@@ -1,0 +1,194 @@
+## Numpy Basic
+
+## data type
+- array의 dtype을 본다. 
+
+arr = np.array([[1, 2, 3], [1, 2, 3]])
+arr.dtype
+= dtype('int32')
+.astype()으로 datatype을 변환 가능
+
+arr.astype(np.uint8)
+arr.astype(np.int32)
+arr.dtype
+arr = np.array([[1, 2, 3], [1, 2, 3]], dtype=np.unit8)
+arr.dtype
+
+- len(arr.shape) 를 통해서 차원의 갯수를 확인 할 수 있지만,  
+- 아래와 같이 ndim을 통해 차원 수를 return 가능
+
+
+## zeros & ones
+
+zeros = np.zeros([3, 3])
+zeros
+= array([[0., 0., 0.],
+        [0., 0., 0.],
+        [0., 0., 0.]])
+       
+zeros = np.zeros(1)
+zeros
+
+= array([0.])
+
+ones = np.ones([10, 5])
+ones
+= array([[1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1.]])
+       
+ones * 5
+= array([[5., 5., 5., 5., 5.],
+       [5., 5., 5., 5., 5.],
+       [5., 5., 5., 5., 5.],
+       [5., 5., 5., 5., 5.],
+       [5., 5., 5., 5., 5.],
+       [5., 5., 5., 5., 5.],
+       [5., 5., 5., 5., 5.],
+       [5., 5., 5., 5., 5.],
+       [5., 5., 5., 5., 5.],
+       [5., 5., 5., 5., 5.]])
+
+## Arange
+- 차원 범위 설정가능
+- 다차원으로 분해 가능
+
+arr = np.arange(5)
+arr
+= array([0, 1, 2, 3, 4])
+
+arr = np.arange(1, 9)
+arr
+= array([1, 2, 3, 4, 5, 6, 7, 8])
+
+arr = np.arange(10, 20)
+arr
+= array([10, 11, 12, 13, 14, 15, 16, 17, 18, 19])
+
+arr = np.arange(10).reshape(5, 2)
+arr
+= array([[0, 1],
+       [2, 3],
+       [4, 5],
+       [6, 7],
+       [8, 9]])
+
+## Index
+
+nums = [1, 2, 3, 4, 5]
+nums[2:]
+= [3, 4, 5]
+
+arr[1]
+= array([2, 3])
+
+nums = [1, 2, 3, 4, [1, 2, 3]]
+nums
+= [1, 2, 3, 4, [1, 2, 3]]
+
+nums[4]
+= [1, 2, 3]
+
+arr[2]
+= array([4, 5])
+
+## Slicing
+
+arr[1:]
+= array([[2, 3],
+       [4, 5],
+       [6, 7],
+       [8, 9]])
+       
+arr[1:, 1:]
+= array([[3],
+       [5],
+       [7],
+       [9]])
+       
+arr
+= arr
+arr
+array([[0, 1],
+       [2, 3],
+       [4, 5],
+       [6, 7],
+       [8, 9]])
+       
+## Boolean Indexing
+
+data = np.random.randn(3, 3)
+data
+= array([[ 1.86291669, -0.00264758,  0.57407919],
+       [-0.86601612,  0.27163841,  0.01555276],
+       [-0.09119035, -0.85391889,  0.92872562]])
+       
+data <= 0
+= array([[False,  True, False],
+       [ True, False, False],
+       [ True,  True, False]])
+       
+data[data <= 0] = 1
+data
+= array([[1.86291669, 1.        , 0.57407919],
+       [1.        , 0.27163841, 0.01555276],
+       [1.        , 1.        , 0.92872562]])
+
+## Broadcast
+- tensorflow나 pytorch로 계산하면 broadcast의 개념도 잘 이해해야 함
+- broadcast는 연산 하려는 서로 다른 두개의 행렬의 shape가 같지 않고,  
+- 한쪽의 차원이라도 같거나 또는 값의 갯수가 한 개 일 때 이를 여러 복사를 하여 연산을 함
+
+arr = np.arange(9).reshape(3, 3)
+arr
+= array([[0, 1, 2],
+       [3, 4, 5],
+       [6, 7, 8]])
+       
+arr + 3
+= array([[ 3,  4,  5],
+       [ 6,  7,  8],
+       [ 9, 10, 11]])
+
+arr * 3
+= array([[ 0,  3,  6],
+       [ 9, 12, 15],
+       [18, 21, 24]])
+       
+arr + np.array([1, 2, 3])
+= array([[ 1,  3,  5],
+       [ 4,  6,  8],
+       [ 7,  9, 11]])
+       
+## Math Function = + - * / ......
+
+np.add(arr, 1)
+np.multiply(arr, 3)
+arr = np.random.randint(2, size=27).reshape(3, 3, 3)
+arr_2 = np.random.randint(2, size=9).reshape(3, 3)
+arr.shape, arr_2.shape
+arr 
+arr_2
+arr + arr_2
+arr * arr_2
+arr - arr
+arr / arr
+np.sum(arr)
+np.sum(arr + arr_2)
+np.max(arr + arr_2)
+np.min(arr + arr_2)
+np.sum(arr + arr_2, 0)
+np.mean(arr)
+arr = np.array([1,2,6,7,8,6,0,9])
+arr
+np.argmax(arr)
+np.argmin(arr)
+arr = np.array([3, 5, 7, 4, 3, 2, 1])
+np.unique(arr)
