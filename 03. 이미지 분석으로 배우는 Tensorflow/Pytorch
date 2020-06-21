@@ -1,0 +1,20 @@
+# 이미지 전처리
+- 요리를 할때 재료를 다듬어서 후라이팬이나 조리기에 넣는 듯 데이터도 다듬어서 넣는것
+
+# Augmentation
+- 데이터를 증폭시켜 다양하게 이미지에 변화 주어 모델에 적용
+- Augmentation을 통해 여러 환경에서도 적응이 되도록 모델에게 하드 트레이닝
+
+# Callbacks
+## 모델이 학습 도중 Epoch 또는 step 단위로 이벤트를 일으키는 옵션
+- TensorBoard는 완전 실시간이 아니라 정해진 타이밍에 실해잇켜 기록을 담는다
+- Learning Rate Schedule, Learning Rate을 ㅎ나로만 고정하는 것이 학습 진행할 때 마다
+  LR을 줄여 Loss가 튀는 것을 방지
+- Checkpoint. 모델 학습 도중 학습된 Weight를 저장. 기본으로는 매 Epoch마다 
+  저장하고 이떄 성능이 향상 되었을 때만 저장 가능.
+
+모델 저장 및 불러오기
+- 앞서 배운 Weight 만 저장하는 것과는 다르게 모델 구조 및 optimizer도 저장  가능
+- 학습 도중에는 Model이나 optimizer까지 저장할 필요는 없음.
+- Model과 optimizer도 함께 저장 해두면 나중에 다시 이어서 학습하기 용이.
+- Weight만 저장하여 Transfer Learning에도 적용가능.
